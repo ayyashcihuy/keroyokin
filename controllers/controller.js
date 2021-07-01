@@ -91,6 +91,11 @@ class Controller {
             res.send(err)
         })
     }
+
+    static logout(req,res) {
+        req.session.destroy()
+        res.redirect("/students/login")
+    }
 }
 
 module.exports = Controller

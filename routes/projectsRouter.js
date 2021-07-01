@@ -8,5 +8,6 @@ projectsRouter.post('/add', Controller.addProjectPost)
 projectsRouter.post('/:id/answer', Controller.addAnswerPost)  
 projectsRouter.get('/:id/answer', Controller.addAnswer)  
 projectsRouter.get('/solved', Controller.homeProjectSolved)  
+projectsRouter.get('/logout', Controller.logout)  
 
 module.exports = projectsRouter

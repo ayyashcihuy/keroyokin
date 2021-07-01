@@ -11,23 +11,23 @@
   <body>
     <%- include('./partials/navbar-home-only') %> 
     <h1>Sign Up</h1>
-    <form action="/students/signUp" method="post"></form>
+    <form action="/students/signup" method="POST">
         <div class="mb-3">
             <label for="inputName" class="form-label">Name</label>
-            <input type="name" class="form-control" id="inputName">
+            <input type="text" class="form-control" id="inputName" name="name">
 
           </div>
         <div class="mb-3">
           <label for="inputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+          <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="email">
           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
           <label for="inputPassword" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+          <input type="password" class="form-control" id="exampleInputPassword1" name="password">
         </div>
-        <a href="/"></a><button type="submit" class="btn btn-primary">Sign Up</button></a>
-        <a href="/"><button type="reset" class="btn btn-primary">Cancel</button></a>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <button type="reset" class="btn btn-primary">Cancel</button>
       </form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

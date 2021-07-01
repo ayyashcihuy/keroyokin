@@ -1,13 +1,10 @@
 const studentsRouter = require("express").Router()
 const Controller = require("../controllers/studentsController")
 
-studentsRouter.get('/', (req, res) => {
-    res.send('Selamat Datang di Keroyokin students')
-  })
-
-studentsRouter.get('/signUp', Controller.formSignUp) 
-studentsRouter.post('/signUp', Controller.signUp)
+studentsRouter.get('/signup', Controller.formSignUp) 
+studentsRouter.post('/signup', Controller.signUp)
 studentsRouter.get('/login', Controller.login) 
+studentsRouter.post('/login', Controller.loginPost) 
 
 module.exports = studentsRouter
 

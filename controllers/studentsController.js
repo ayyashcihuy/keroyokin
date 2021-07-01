@@ -1,23 +1,26 @@
 const { Student, Project } = require('../models/index');
-const addUserToStudentName = require('../helper/addusertostudentname');
+const { hashingPassword, comparePassword } = require('../helper/bcrypt');
+const transporter = require('../helper/emailSetUp');
+
 
 class StudentController {
 
     static formSignUp(req, res) {
-        res.render('signUp.ejs')
+        res.render('signup.ejs')
     }
 
     static signUp(req, res) {
         let newStudent = {
             name: req.body.name,
-            email: req.body.name,
-            password: req.body.password     
+            email: req.body.email,
+            password: hashingPassword(req.body.password)     
         }
-
+        console.log(newStudent);
         Student
             .create(newStudent)
             .then(newStudent => {
-                res.redirect('/', {newStudent, addUserToStudentName})
+                req.session.isLogin = true
+                res.redirect('/projects')
             })
             .catch(err => {
                 res.send(err)
@@ -25,43 +28,47 @@ class StudentController {
     }
 
     static login(req, res) {
+        // console.log(req.session.id);
         res.render('login.ejs')
     }
 
-    // static formEditStudentData(req, res) {
-    //     const id = +req.params.id
-
-    //     Student
-    //         .findByPk(id)
-    //         .then(list => {
-    //             res.render('editStudent.ejs', { list })
-    //         })
-    //         .catch(err => {
-    //             res.send(err)
-    //         })
-    // }
-
-    // static editStudentData(req, res) {
-    //     const id = +req.params.id
-    //     let newCastData = {
-    //         first_name: req.body.first_name,
-    //         last_name: req.body.last_name,
-    //         birth_year: +req.body.birth_year,
-    //         phone_number: +req.body.phone_number,
-    //         gender: req.body.gender
-    //     }
-
-    //     Student
-    //         .update(newCastData, {
-    //             where: {
-    //                 id: id
-    //             }
-    //         })
-    //         .then(data => {
-    //             res.redirect('/casts')
-    //         })
-    //         .catch(err => res.send(err))
-    // }
+    static loginPost(req, res) {
+        let input = {
+            email: req.body.email,
+            password: req.body.password
+        }
+        // console.log(input);
+        Student
+        .findOne({
+            where: {
+                email: input.email
+            }
+        })
+        .then(data => {
+            if(comparePassword(input.password, data.password)) {
+                req.session.isLogin = true
+                const mailData = {
+                    from: "keroyokan@gmail.com",
+                    to: input.email,
+                    subject: "Ahlaaaan~",
+                    text: "Mantap Sohabat",
+                    html: '<b> Assalamualaikum </b>'
+                }
+                transporter.sendMail(mailData, (err, info) => {
+                    if(err) {
+                        console.log(err);
+                        // res.send(err)
+                    }
+                res.redirect("/projects")
+                })
+            } else {
+                res.redirect("/students/login")
+            }
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
 }
 
 module.exports = StudentController
