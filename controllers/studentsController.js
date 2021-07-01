@@ -50,9 +50,9 @@ class StudentController {
                 const mailData = {
                     from: "keroyokan@gmail.com",
                     to: input.email,
-                    subject: "Ahlaaaan~",
+                    subject: "Terima Kasih Karena sudah Kembali Login",
                     text: "Mantap Sohabat",
-                    html: '<b> Assalamualaikum </b>'
+                    html: '<b> Assalamualaikum </b>, terima kasih telah kembali dan bersedia membantu lebih banyak orang :)'
                 }
                 transporter.sendMail(mailData, (err, info) => {
                     if(err) {
