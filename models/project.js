@@ -12,14 +12,23 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Project.belongsToMany(models.Student, {through: models.StudentProject})
+      Project.belongsTo(models.Student)
     }
   };
   Project.init({
     task_name: DataTypes.STRING,
     subject: DataTypes.STRING,
     detail_task: DataTypes.TEXT,
-    answer: DataTypes.TEXT
+    status_report: DataTypes.TEXT,
+    StudentId: DataTypes.INTEGER
   }, {
+    hooks: {
+      beforeCreate: (instance, option) => {
+        if(!instance.status_report) {
+          instance.status_report = "solved"
+        }
+      }
+    },
     sequelize,
     modelName: 'Project',
   });

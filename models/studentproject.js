@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   StudentProject.init({
-    StudentsId: DataTypes.INTEGER,
-    ProjectsId: DataTypes.INTEGER,
-    status_report: DataTypes.STRING
+    StudentId: DataTypes.INTEGER,
+    ProjectId: DataTypes.INTEGER,
+    answer: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'StudentProject',

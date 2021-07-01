@@ -11,7 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Student.hasMany(models.Project)
       Student.belongsToMany(models.Project, {through: models.StudentProject})
+    }
+    getTaskBy() {
+      return `task by ${this.name}`
     }
   };
   Student.init({
