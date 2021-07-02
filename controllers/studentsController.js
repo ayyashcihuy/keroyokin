@@ -28,7 +28,6 @@ class StudentController {
     }
 
     static login(req, res) {
-        // console.log(req.session.id);
         res.render('login.ejs')
     }
 
