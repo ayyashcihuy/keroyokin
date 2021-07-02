@@ -96,6 +96,22 @@ class Controller {
         req.session.destroy()
         res.redirect("/students/login")
     }
+
+    static deletePost(req, res) {
+        let id = Number(req.params.id)
+        Project
+        .destroy({
+            where: {
+                id: id
+            }
+        })
+        .then(() => {
+            res.redirect("/projects")
+        })
+        .catch(error => {
+            res.send(error)
+        })
+    }
 }
 
 module.exports = Controller
