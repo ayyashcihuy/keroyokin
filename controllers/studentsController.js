@@ -6,7 +6,7 @@ const transporter = require('../helper/emailSetUp');
 class StudentController {
 
     static formSignUp(req, res) {
-        res.render('signup.ejs')
+        res.render('signUp.ejs')
     }
 
     static signUp(req, res) {
