@@ -3,7 +3,7 @@ const mainRouter = require('./routes')
 const projectsRouter = require('./routes/projectsRouter')
 const studentsRouter = require('./routes/studentsRouter')
 const app = express()
-const port = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000
 const session = require("express-session")
 const nodemailer = require('nodemailer');
 
@@ -28,6 +28,6 @@ app.use((req, res, next) => {
 
 app.use('/projects', projectsRouter)
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`Example app listening at http://localhost:${PORT}`)
 })
