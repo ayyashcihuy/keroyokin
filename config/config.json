@@ -7,10 +7,15 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "mzpvnhndgtcidb",
-    "password": "23ca7939a234c8543f266730756df403dbb1b7e10bda97ef2384069449c0f667",
-    "database": "d9uer6vvq161rh",
-    "host": "ec2-3-214-136-47.compute-1.amazonaws.com",
-    "dialect": "postgres"
+    "use_env_variable":"postgres://mzpvnhndgtcidb:23ca7939a234c8543f266730756df403dbb1b7e10bda97ef2384069449c0f667@ec2-3-214-136-47.compute-1.amazonaws.com:5432/d9uer6vvq161rh",
+    "ssl": true,
+    "dialect": "postgres",
+    "protocol": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   }
 }
