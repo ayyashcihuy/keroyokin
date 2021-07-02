@@ -28,6 +28,6 @@ app.use((req, res, next) => {
 
 app.use('/projects', projectsRouter)
 
-app.listen(PORT, () => {
+app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
